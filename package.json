@@ -1,6 +1,6 @@
 {
   "name": "sharepoint-client-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fluent TypeScript/JavaScript wrapper for interacting with SharePoint site and admin APIs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
