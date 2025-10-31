@@ -124,6 +124,6 @@ await sp
 
 ---
 
-<!-- ## License
+## License
 
-MIT © Rayen  -->
+This project is licensed under the [MIT License](./LICENSE).
