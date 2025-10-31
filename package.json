@@ -1,5 +1,5 @@
 {
-  "name": "@sharepoint/client-api",
+  "name": "sharepoint-client-api",
   "version": "1.0.0",
   "description": "A fluent TypeScript/JavaScript wrapper for interacting with SharePoint site and admin APIs.",
   "main": "dist/index.js",
