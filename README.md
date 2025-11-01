@@ -1,22 +1,30 @@
-# sharepoint-client-api
+# 🧩 sharepoint-client-api
 
-> A fluent TypeScript/JavaScript wrapper for interacting with SharePoint sites and admin APIs.
+> A fluent TypeScript/JavaScript wrapper for interacting with SharePoint sites and admin APIs.  
 > Provides a simple, type-safe interface for queries, CRUD operations, and more.
 
 ---
 
-## Features
-
-* Fluent interface for building SharePoint API requests
-* Supports site and admin endpoints
-* Query builders: `select`, `filter`, `expand`, `orderBy`, `top`, `skip`
-* Full CRUD support: `get`, `post`, `put`, `patch`, `delete`
-* Optional error ignoring with `.ignore()`
-* Easy token-based authentication
+[![npm version](https://img.shields.io/npm/v/sharepoint-client-api?color=blue&logo=npm)](https://www.npmjs.com/package/sharepoint-client-api)
+[![npm downloads](https://img.shields.io/npm/dt/sharepoint-client-api.svg?logo=npm&label=Downloads)](https://www.npmjs.com/package/sharepoint-client-api)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?logo=typescript)
+![Bundle Size](https://img.shields.io/bundlephobia/minzip/sharepoint-client-api?label=size)
 
 ---
 
-## Installation
+## ✨ Features
+
+- 🧠 Fluent interface for building SharePoint API requests  
+- 🌐 Supports **site** and **admin** endpoints  
+- 🔍 Query builders: `select`, `filter`, `expand`, `orderBy`, `top`, `skip`  
+- 🔧 Full CRUD support: `get`, `post`, `put`, `patch`, `delete`  
+- 🚫 Optional error ignoring with `.ignore()`  
+- 🔐 Easy token-based authentication  
+
+---
+
+## 📦 Installation
 
 ```bash
 npm install sharepoint-client-api
@@ -26,7 +34,7 @@ yarn add sharepoint-client-api
 
 ---
 
-## Usage
+## 🚀 Usage
 
 ### Connect with Azure AD app credentials
 
@@ -55,7 +63,7 @@ console.log(lists);
 
 ---
 
-### Using admin endpoints
+### 🛠 Using admin endpoints
 
 ```ts
 const adminSites = await sp
@@ -68,7 +76,7 @@ console.log(adminSites);
 
 ---
 
-### Ignoring errors
+### ⚙️ Ignoring errors
 
 ```ts
 const result = await sp
@@ -79,7 +87,7 @@ const result = await sp
 
 ---
 
-### Setting custom headers
+### 📨 Setting custom headers
 
 ```ts
 await sp
@@ -90,7 +98,7 @@ await sp
 
 ---
 
-## Query Builder Methods
+## 🧱 Query Builder Methods
 
 | Method                       | Description             |
 | ---------------------------- | ----------------------- |
@@ -104,7 +112,7 @@ await sp
 
 ---
 
-## HTTP Methods
+## 🔄 HTTP Methods
 
 | Method        | Description            |
 | ------------- | ---------------------- |
@@ -116,7 +124,7 @@ await sp
 
 ---
 
-## Notes
+## 📝 Notes
 
 * Ensure `.api()` or `.adminApi()` is called before making any request.
 * `.ignore()` allows safe API calls without throwing errors.
@@ -124,6 +132,10 @@ await sp
 
 ---
 
-## License
+## 📜 License
 
 This project is licensed under the [MIT License](./LICENSE).
+
+
+---
+⭐ If you find this package helpful, consider giving it a star on [GitHub](https://github.com/rayen-creator/sharepoint-client-api) !
