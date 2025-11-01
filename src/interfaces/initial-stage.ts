@@ -1,4 +1,4 @@
-import { ConfiguredStage } from "./configured-stage";
+import { ConfiguredStage } from './configured-stage';
 
 /**
  * Initial stage to start an API request.

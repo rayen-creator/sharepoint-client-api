@@ -1,4 +1,4 @@
-import { AzureAppCredentials } from "./azure-app-credentials";
+import { AzureAppCredentials } from './azure-app-credentials';
 
 /**
  * Represents credentials and settings to authenticate with SharePoint.
@@ -6,7 +6,7 @@ import { AzureAppCredentials } from "./azure-app-credentials";
 export interface SharePointAuthOptions {
   /** Azure AD App credentials */
   appCredentials: AzureAppCredentials;
-  /** The hostname of the SharePoint site (e.g., "yourtenant.sharepoint.com") */
+  /** The hostname of the SharePoint site (e.g., 'yourtenant.sharepoint.com') */
   siteHostname: string;
   /** The Azure tenant ID */
   tenantId: string;
@@ -14,6 +14,6 @@ export interface SharePointAuthOptions {
   refreshToken: string;
   /** Optional OAuth2 scope (default: SharePoint online) */
   scope?: string;
-  /** Optional grant type (default: "refresh_token") */
+  /** Optional grant type (default: 'refresh_token') */
   grantType?: string;
 }

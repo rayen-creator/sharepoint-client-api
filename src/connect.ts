@@ -1,7 +1,7 @@
-import axios from "axios";
-import qs from "qs";
-import { MicrosoftSharePointWrapper } from "./client";
-import { SharePointAuthOptions } from "./interfaces/sharepoint-auth-options";
+import axios from 'axios';
+import qs from 'qs';
+import { MicrosoftSharePointWrapper } from './client';
+import { SharePointAuthOptions } from './interfaces/sharepoint-auth-options';
 
 /**
  * Retrieves an access token from Azure AD for SharePoint API.
@@ -18,13 +18,13 @@ async function fetchSharePointAccessToken(
     client_id: appCredentials.clientId,
     client_secret: appCredentials.clientSecret,
     refresh_token: refreshToken,
-    grant_type: grantType ?? "refresh_token",
-    scope: scope ?? "https://microsoft.sharepoint.com/.default",
+    grant_type: grantType ?? 'refresh_token',
+    scope: scope ?? 'https://microsoft.sharepoint.com/.default',
   });
 
   try {
     const { data } = await axios.post(tokenUrl, body, {
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
 
     return data.access_token;
@@ -36,7 +36,7 @@ async function fetchSharePointAccessToken(
       error.message;
 
     console.error(
-      `[SharePoint Token Error] ${status ? `(${status})` : ""} ${message || ""}`
+      `[SharePoint Token Error] ${status ? `(${status})` : ''} ${message || ''}`
     );
   }
 }
@@ -50,11 +50,11 @@ export async function connectWithSharePoint(
   options: SharePointAuthOptions
 ): Promise<MicrosoftSharePointWrapper | undefined> {
   const accessToken = await fetchSharePointAccessToken(options);
-  if (!accessToken) throw new Error("Failed to obtain access token for SharePoint.");
+  if (!accessToken) throw new Error('Failed to obtain access token for SharePoint.');
 
   const sp = new MicrosoftSharePointWrapper(options.siteHostname, {
-    Accept: "application/json;odata=verbose",
-    "Content-Type": "application/json;odata=verbose",
+    Accept: 'application/json;odata=verbose',
+    'Content-Type': 'application/json;odata=verbose',
     Authorization: `Bearer ${accessToken}`,
   });
 
@@ -72,8 +72,8 @@ export function connectWithToken(
   accessToken: string
 ): MicrosoftSharePointWrapper {
   return new MicrosoftSharePointWrapper(siteHostname, {
-    Accept: "application/json;odata=verbose",
-    "Content-Type": "application/json;odata=verbose",
+    Accept: 'application/json;odata=verbose',
+    'Content-Type': 'application/json;odata=verbose',
     Authorization: `Bearer ${accessToken}`,
   });
 }

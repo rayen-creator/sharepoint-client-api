@@ -1,7 +1,7 @@
-import axios from "axios";
-import { ConfiguredStage } from "./interfaces/configured-stage";
-import { HttpMethod } from "./enums/http-method";
-import { InitialStage } from "./interfaces/initial-stage";
+import axios from 'axios';
+import { ConfiguredStage } from './interfaces/configured-stage';
+import { HttpMethod } from './enums/http-method';
+import { InitialStage } from './interfaces/initial-stage';
 
 /**
  * Main SharePoint API wrapper for interacting with site or admin endpoints.
@@ -22,14 +22,14 @@ export class MicrosoftSharePointWrapper
 
   /**
    * Creates a new SharePoint wrapper instance.
-   * @param siteHostname The hostname of the SharePoint site (e.g., "mytenant.sharepoint.com")
+   * @param siteHostname The hostname of the SharePoint site (e.g., 'mytenant.sharepoint.com')
    * @param headers Default headers to use for requests
    */
   constructor(siteHostname: string, headers: any) {
     this.siteHostname = siteHostname;
     this.headers = headers;
-    this.endpoint = "";
-    this.siteName = "";
+    this.endpoint = '';
+    this.siteName = '';
     this.isAdmin = false;
     this.tempHeaders = {};
     this.shouldIgnoreErrors = false;
@@ -61,7 +61,7 @@ export class MicrosoftSharePointWrapper
    */
   adminApi(endpoint: string): ConfiguredStage {
     this.endpoint = endpoint;
-    this.siteName = "";
+    this.siteName = '';
     this.isAdmin = true;
     this.initialized = true;
     this.queryParams = {};
@@ -94,8 +94,8 @@ export class MicrosoftSharePointWrapper
    * @param fields Field names to select
    */
   select(fields: string | string[]): ConfiguredStage {
-    const value = Array.isArray(fields) ? fields.join(",") : fields;
-    this.queryParams["$select"] = value;
+    const value = Array.isArray(fields) ? fields.join(',') : fields;
+    this.queryParams['$select'] = value;
     return this;
   }
 
@@ -104,7 +104,7 @@ export class MicrosoftSharePointWrapper
    * @param condition OData filter string
    */
   filter(condition: string): ConfiguredStage {
-    this.queryParams["$filter"] = condition;
+    this.queryParams['$filter'] = condition;
     return this;
   }
 
@@ -113,8 +113,8 @@ export class MicrosoftSharePointWrapper
    * @param fields Fields to expand
    */
   expand(fields: string | string[]): ConfiguredStage {
-    const value = Array.isArray(fields) ? fields.join(",") : fields;
-    this.queryParams["$expand"] = value;
+    const value = Array.isArray(fields) ? fields.join(',') : fields;
+    this.queryParams['$expand'] = value;
     return this;
   }
 
@@ -124,7 +124,7 @@ export class MicrosoftSharePointWrapper
    * @param ascending Whether to order ascending (default: true)
    */
   orderBy(field: string, ascending = true): ConfiguredStage {
-    this.queryParams["$orderby"] = `${field} ${ascending ? "asc" : "desc"}`;
+    this.queryParams['$orderby'] = `${field} ${ascending ? 'asc' : 'desc'}`;
     return this;
   }
 
@@ -133,7 +133,7 @@ export class MicrosoftSharePointWrapper
    * @param count Number of items to return
    */
   top(count: number): ConfiguredStage {
-    this.queryParams["$top"] = count.toString();
+    this.queryParams['$top'] = count.toString();
     return this;
   }
 
@@ -142,7 +142,7 @@ export class MicrosoftSharePointWrapper
    * @param count Number of items to skip
    */
   skip(count: number): ConfiguredStage {
-    this.queryParams["$skip"] = count.toString();
+    this.queryParams['$skip'] = count.toString();
     return this;
   }
 
@@ -174,8 +174,8 @@ export class MicrosoftSharePointWrapper
   /** Build query string from query parameters */
   private buildQueryString(): string {
     const entries = Object.entries(this.queryParams);
-    if (entries.length === 0) return "";
-    const query = entries.map(([k, v]) => `${k}=${v}`).join("&");
+    if (entries.length === 0) return '';
+    const query = entries.map(([k, v]) => `${k}=${v}`).join('&');
     return `?${query}`;
   }
 
@@ -187,14 +187,14 @@ export class MicrosoftSharePointWrapper
   private async makeRequest(method: HttpMethod, data?: any) {
     if (!this.initialized) {
       throw new Error(
-        "❌ You must call .api() or .adminApi() before making a request."
+        '❌ You must call .api() or .adminApi() before making a request.'
       );
     }
 
     const baseUrl = this.isAdmin
       ? `https://${this.siteHostname.replace(
-          ".sharepoint.com",
-          ""
+          '.sharepoint.com',
+          ''
         )}-admin.sharepoint.com/_api/${this.endpoint}`
       : `https://${this.siteHostname}/sites/${this.siteName}/_api/${this.endpoint}`;
 
@@ -202,7 +202,7 @@ export class MicrosoftSharePointWrapper
     const headers = { ...this.headers, ...this.tempHeaders };
 
     if (method !== HttpMethod.GET) {
-      headers["X-RequestDigest"] = await this.getRequestDigest();
+      headers['X-RequestDigest'] = await this.getRequestDigest();
     }
 
     try {
@@ -217,12 +217,12 @@ export class MicrosoftSharePointWrapper
       const status = error.response?.status;
       const spError = error.response?.data?.error;
       const message =
-        spError?.message?.value || error.message || "Unknown SharePoint API error";
+        spError?.message?.value || error.message || 'Unknown SharePoint API error';
 
       if (this.shouldIgnoreErrors) {
         console.warn(
           `Ignoring SP error for: ${method} ${this.endpoint}` +
-            (spError?.code ? ` (Code: ${spError.code})` : "") +
+            (spError?.code ? ` (Code: ${spError.code})` : '') +
             ` - ${message}`
         );
         return null;
@@ -230,8 +230,8 @@ export class MicrosoftSharePointWrapper
 
       const cleanMessage =
         `Microsoft SharePoint API Error at: ${method} ${this.endpoint}` +
-        (status ? ` (Status: ${status})` : "") +
-        (spError?.code ? ` (Code: ${spError.code})` : "") +
+        (status ? ` (Status: ${status})` : '') +
+        (spError?.code ? ` (Code: ${spError.code})` : '') +
         ` - ${message}`;
 
       throw new Error(cleanMessage);
