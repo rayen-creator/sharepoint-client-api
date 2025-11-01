@@ -1,4 +1,4 @@
-# @sharepoint/client-api
+# sharepoint-client-api
 
 > A fluent TypeScript/JavaScript wrapper for interacting with SharePoint sites and admin APIs.
 > Provides a simple, type-safe interface for queries, CRUD operations, and more.
@@ -19,9 +19,9 @@
 ## Installation
 
 ```bash
-npm install @sharepoint/client-api
+npm install sharepoint-client-api
 # or
-yarn add @sharepoint/client-api
+yarn add sharepoint-client-api
 ```
 
 ---
@@ -31,7 +31,7 @@ yarn add @sharepoint/client-api
 ### Connect with Azure AD app credentials
 
 ```ts
-import { connectWithSharePoint } from "@sharepoint/client-api";
+import { connectWithSharePoint } from "sharepoint-client-api";
 
 const sp = await connectWithSharePoint({
   siteHostname: "mytenant.sharepoint.com",
