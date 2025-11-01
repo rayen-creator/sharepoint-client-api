@@ -10,5 +10,4 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src",]
-  // "include": ["src", "playground.ts"]
 }
